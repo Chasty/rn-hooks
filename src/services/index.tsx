@@ -27,6 +27,8 @@ export async function getTasks() {
     }
 }
 
+
+
 export async function saveTask(data) {
     data = getUrlEncoded(data)
     try {
@@ -34,6 +36,22 @@ export async function saveTask(data) {
             url: `${baseUrl}/tasks`,
             data: data,
             method: 'POST'
+        })
+
+        return response
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+export async function updateTask(data) {
+    let id = data.id;
+    data = getUrlEncoded(data)
+    try {
+        const response = await axios({
+            url: `${baseUrl}/tasks/${id}`,
+            data: data,
+            method: 'PUT'
         })
 
         return response
